@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shella Simbillo · Executive Assistant · Philippines</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ── Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: #edeae4;
+      font-family: 'Montserrat', sans-serif;
+      color: #2a2a2a;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ══ PRELOADER ══ */
+    #preloader {
+      position: fixed; top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      overflow: hidden; z-index: 9999;
+    }
+    #preloader > div {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      overflow: hidden;
+      transition: width 4s cubic-bezier(0.76, 0, 0.24, 1);
+    }
+    #preloader .light { background: #edeae4; }
+    #preloader .dark  { background: #111110; }
+    .pl-text {
+      position: absolute;
+      left: 50vw; top: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center; pointer-events: none; white-space: nowrap;
+    }
+    .pl-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 48px; font-weight: 400;
+      letter-spacing: 0.01em; display: block; line-height: 1;
+    }
+    .pl-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px; font-weight: 500;
+      letter-spacing: 0.32em; text-transform: uppercase;
+      display: block; margin-top: 14px;
+    }
+    #preloader .light .pl-name,
+    #preloader .light .pl-title { color: #1b1a18; }
+    #preloader .dark  .pl-name,
+    #preloader .dark  .pl-title { color: #ffffff; }
+    #preloader.fade-out {
+      opacity: 0; transition: opacity 0.5s ease; pointer-events: none;
+    }
+    body.loading { overflow: hidden; }
+
+    /* ══ HEADER ══ */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 44px;
+      background: #edeae4;
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+    }
+    header nav ul {
+      display: flex; list-style: none; gap: 32px; margin: 0; padding: 0;
+    }
+    header nav ul li a {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px; font-weight: 500;
+      letter-spacing: 0.15em; color: #2a2a2a;
+      text-decoration: none; text-transform: uppercase;
+    }
+    .logo-wrap {
+      position: absolute; left: 50%; transform: translateX(-50%);
+      text-align: center;
+    }
+    .logo-wrap a {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px; font-weight: 400; color: #2a2a2a; text-decoration: none;
+      display: block; line-height: 1;
+    }
+    .logo-wrap span {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 8px; font-weight: 500; letter-spacing: 0.2em;
+      text-transform: uppercase; color: #8a8680; display: block; margin-top: 4px;
+    }
+
+    /* ══ HERO ══ */
+    .hero {
+      position: relative; width: 100%;
+      height: calc(100vh - 63px); min-height: 560px;
+      overflow: hidden; margin-top: 63px;
+    }
+    .hero-img,
+    .hero-video {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+    }
+    .hero::after {
+      content: ''; position: absolute; inset: 0;
+      background: rgba(0,0,0,0.22); pointer-events: none;
+    }
+    .hero-text {
+      position: absolute; bottom: 18%; left: 0; right: 0;
+      text-align: center; color: #fff; padding: 0 40px; z-index: 2;
+    }
+    .hero-text h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 66px; font-weight: 400; line-height: 1.1;
+      color: #fff; text-shadow: 0 1px 20px rgba(0,0,0,0.2);
+      letter-spacing: 0.01em;
+    }
+    .hero-text h1 span { font-style: italic; display: block; }
+    .hero-eyebrow {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 9px; font-weight: 500;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      color: rgba(255,255,255,0.7); margin-bottom: 20px;
+    }
+
+    /* ══ SHARED ══ */
+    .container-sm  { max-width: 520px;  margin: 0 auto; padding: 0 24px; }
+    .container-lg  { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+    .section-pad   { padding: 80px 0; }
+    .section-pad-t { padding-top: 80px; }
+
+    p.body-text {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px; font-weight: 300;
+      line-height: 1.9; color: #3a3a3a; letter-spacing: 0.02em;
+    }
+    .spyre-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 9px; font-weight: 500;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      color: #8a8680; margin-bottom: 20px; display: block;
+    }
+
+    /* Full-width image */
+    .full-img { width: 100%; display: block; line-height: 0; }
+    .full-img img { width: 100%; display: block; height: 560px; object-fit: cover; }
+
+    /* Contained image */
+    .contained-img { max-width: 460px; margin: 0 auto; }
+    .contained-img img { width: 100%; display: block; }
+
+    /* Big centred heading */
+    .big-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: 52px; font-weight: 400; line-height: 1.1;
+      color: #1e1e1e; text-align: center; letter-spacing: 0.01em;
+    }
+    .big-heading span { font-style: italic; display: block; }
+
+    /* Two-col */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .two-col img { width: 100%; display: block; aspect-ratio: 4/3; object-fit: cover; }
+    .two-col .text-col { display: flex; align-items: center; justify-content: flex-end; }
+    .two-col .text-col p { max-width: 360px; }
+
+    /* Section heading */
+    .section-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px; font-weight: 400; color: #1e1e1e; text-align: center;
+    }
+    .section-heading span { font-style: italic; }
+
+    /* CTA link */
+    .cta-link {
+      display: inline-block; font-size: 9px; font-weight: 500;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: #2a2a2a; text-decoration: none;
+      border-bottom: 1px solid #2a2a2a; padding-bottom: 2px;
+    }
+
+    /* ══ SERVICES GRID (like project tiles) ══ */
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .service-tile { position: relative; overflow: hidden; }
+    .service-tile-img {
+      width: 100%; aspect-ratio: 4/3;
+      object-fit: cover; display: block;
+    }
+    .service-tile-body { padding: 20px 0 8px; }
+    .service-tile-num {
+      font-size: 9px; font-weight: 500; letter-spacing: 0.2em;
+      color: #8a8680; text-transform: uppercase; display: block; margin-bottom: 6px;
+    }
+    .service-tile-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px; font-weight: 400; color: #2a2a2a;
+      display: block; margin-bottom: 10px;
+    }
+    .service-tile-desc {
+      font-size: 11px; font-weight: 300; line-height: 1.8;
+      color: #3a3a3a; margin-bottom: 12px;
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      font-size: 8px; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; color: #8a8680;
+      border: 1px solid #d4d0c9; padding: 4px 9px;
+    }
+
+    /* ══ VALUE — horizontal list ══ */
+    .value-list { border-top: 1px solid #d4d0c9; }
+    .value-item {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; padding: 40px 0;
+      border-bottom: 1px solid #d4d0c9; align-items: start;
+    }
+    .value-item h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px; font-weight: 400; line-height: 1.35; color: #1e1e1e;
+    }
+
+    /* ══ PROCESS — numbered ══ */
+    .process-list { border-top: 1px solid #d4d0c9; }
+    .process-item {
+      display: grid; grid-template-columns: 64px 1fr;
+      gap: 48px; padding: 36px 0;
+      border-bottom: 1px solid #d4d0c9; align-items: start;
+    }
+    .process-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px; color: #d4d0c9; line-height: 1;
+    }
+    .process-item h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px; font-weight: 400; margin-bottom: 10px; color: #1e1e1e;
+    }
+
+    /* ══ RESULTS — project-tile style ══ */
+    .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .result-tile { position: relative; }
+    .result-tile-img {
+      width: 100%; aspect-ratio: 1/1;
+      object-fit: cover; display: block;
+    }
+    .result-tile-label {
+      font-size: 10px; font-weight: 400; letter-spacing: 0.12em;
+      text-align: center; color: #2a2a2a; margin-top: 12px;
+      text-transform: uppercase; display: block;
+    }
+
+    /* ══ TESTIMONIALS ══ */
+    .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; }
+    .testi { border-top: 1px solid #2a2a2a; padding-top: 28px; }
+    .testi blockquote {
+      font-family: 'Playfair Display', serif; font-style: italic;
+      font-size: 16px; line-height: 1.65; color: #1e1e1e; margin-bottom: 20px;
+    }
+    .testi cite {
+      font-size: 10px; font-weight: 400; letter-spacing: 0.1em; color: #8a8680;
+    }
+
+    /* ══ FAQ ══ */
+    .faq-list { border-top: 1px solid #d4d0c9; }
+    .faq-item {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; padding: 36px 0; border-bottom: 1px solid #d4d0c9;
+    }
+    .faq-q {
+      font-family: 'Playfair Display', serif; font-size: 18px; line-height: 1.4;
+    }
+
+    /* ══ ABOUT ══ */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .signals { border-left: 1px solid #d4d0c9; padding-left: 44px; }
+    .signal { padding-bottom: 28px; margin-bottom: 28px; border-bottom: 1px solid #d4d0c9; }
+    .signal:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .signal .sig-label {
+      font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase;
+      color: #8a8680; margin-bottom: 10px; display: block;
+    }
+
+    /* ══ DARK CTA ══ */
+    .cta-section {
+      background: #111110; padding: 100px 48px 80px; text-align: center;
+    }
+    .cta-section .spyre-label { color: rgba(255,255,255,0.3); margin-bottom: 28px; }
+    .cta-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 46px; font-weight: 400; line-height: 1.15; color: #fff;
+      max-width: 580px; margin: 0 auto 24px;
+    }
+    .cta-section .cta-sub {
+      font-size: 13px; font-weight: 300; line-height: 1.8;
+      color: rgba(255,255,255,0.45); max-width: 420px; margin: 0 auto 44px;
+    }
+    .btn-cta {
+      display: inline-block; font-size: 9px; font-weight: 500;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: #111; background: #fff; padding: 14px 32px; text-decoration: none;
+    }
+    .cta-note { font-size: 10px; color: rgba(255,255,255,0.25); margin-top: 20px; letter-spacing: 0.06em; }
+    .cta-pricing { font-size: 9px; letter-spacing: 0.16em; color: rgba(255,255,255,0.18); margin-top: 28px; text-transform: uppercase; }
+
+    /* ══ FOOTER ══ */
+    footer { background-color: #111110; border-top: 1px solid rgba(255,255,255,0.06); padding: 28px 44px 24px; }
+    .footer-social { display: flex; gap: 28px; margin-bottom: 14px; }
+    .footer-social a {
+      font-size: 9px; font-weight: 400; letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.4); text-decoration: none; text-transform: uppercase;
+    }
+    .footer-legal { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
+    .footer-legal p, .footer-legal a {
+      font-size: 9px; color: rgba(255,255,255,0.22); letter-spacing: 0.08em;
+      text-decoration: none;
+    }
+    .footer-legal p { text-transform: none; }
+  </style>
+</head>
+<body class="loading">
+
+  <!-- ══ PRELOADER ══ -->
+  <div id="preloader">
+    <div class="light">
+      <div class="pl-text">
+        <span class="pl-name">Shella</span>
+        <span class="pl-title">Executive &nbsp;|&nbsp; Assistant</span>
+      </div>
+    </div>
+    <div class="dark">
+      <div class="pl-text">
+        <span class="pl-name">Shella</span>
+        <span class="pl-title">Executive &nbsp;|&nbsp; Assistant</span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══ HEADER ══ -->
+  <header id="site-header">
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#results">Results</a></li>
+      </ul>
+    </nav>
+    <div class="logo-wrap">
+      <a href="#">Shella Simbillo</a>
+      <span>Executive Assistant</span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#clients">Clients</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+
+  <!-- ══ HERO ══ -->
+  <section class="hero">
+    <video
+      class="hero-video"
+      autoplay
+      playsinline
+      loop
+      muted
+    >
+      <source src="Header.mp4" type="video/mp4">
+    </video>
+    <div class="hero-text">
+      <p class="hero-eyebrow">Executive Assistant &nbsp;·&nbsp; Philippines &nbsp;·&nbsp; Remote</p>
+      <h1>
+        Your operations run.
+        <span>Even when you can't.</span>
+      </h1>
+    </div>
+  </section>
+
+
+  <!-- ══ INTRO PARAGRAPH ══ -->
+  <section style="padding:72px 0; background:#edeae4;">
+    <div class="container-sm" style="text-align:center;">
+      <p class="body-text" style="text-align:center; max-width:420px; margin:0 auto;">
+        Shella supports founders and growing businesses through proactive executive assistance, workflow coordination, and marketing operations, so you can lead without being buried in the operational layer.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ══ FULL-WIDTH IMAGE ══ -->
+  <div class="full-img">
+    <img src="Shella2.jpg" alt="Shella Simbillo" style="object-position: center 55%;">
+  </div>
+
+
+  <!-- ══ POSITIONING ══ -->
+  <section id="about" style="padding:72px 0 48px; background:#edeae4;">
+    <div class="container-sm">
+      <p class="body-text" style="max-width:340px;">
+        You're not struggling because you lack vision. You're struggling because the operational weight of running a business, the inbox, the scheduling, the follow-ups, the coordination gaps, is landing on you when it shouldn't be.
+      </p>
+      <p class="body-text" style="max-width:340px; margin-top:20px;">
+        I work with founders, coaches, consultants, agencies, and ecommerce businesses that need consistent, proactive support behind the scenes. Not someone who waits to be told what to do, someone who sees what needs doing and handles it.
+      </p>
+    </div>
+    <div class="contained-img" style="margin-top:52px;">
+      <img src="%233.jpg" alt="" style="width:100%; aspect-ratio:1/1; display:block; object-fit:cover; object-position: center bottom;">
+    </div>
+  </section>
+
+
+  <!-- ══ BIG HEADING ══ -->
+  <section style="padding:80px 0 56px; background:#edeae4;">
+    <div class="container-lg">
+      <h2 class="big-heading">
+        Your operations run,
+        <span>Even when you can't.</span>
+      </h2>
+    </div>
+  </section>
+
+
+  <!-- ══ TWO-COL: APPROACH + IMAGE ══ -->
+  <section style="padding:16px 0 88px; background:#edeae4;">
+    <div class="container-lg">
+      <div class="two-col">
+        <div class="text-col">
+          <p class="body-text">
+            For the founder who yearns for operational clarity, Shella takes on the work that should never have been yours to carry, inbox, calendar, follow-ups, content coordination, and the recurring tasks that pile up the moment your attention moves elsewhere. The result isn't just that tasks get done. It's that your business runs with the kind of consistency and structure that makes growth actually feel sustainable.
+          </p>
+        </div>
+        <div>
+          <img src="Shella1.jpg" alt="Shella Simbillo" style="object-position: center 65%;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══ SERVICES ══ -->
+  <section id="services" style="padding:80px 0; background:#edeae4; border-top:1px solid #d4d0c9;">
+    <div class="container-lg">
+      <h2 class="section-heading" style="margin-bottom:12px;">Support <span>Services</span>.</h2>
+      <p class="body-text" style="text-align:center; max-width:480px; margin:0 auto 48px;">
+        Three pillars of operational support, categorized by function, not software. Because you're not hiring a tool. You're hiring stability.
+      </p>
+      <div class="services-grid">
+        <div class="service-tile">
+          <img class="service-tile-img" src="Service1.jpg" alt="Executive Assistance">
+          <div class="service-tile-body">
+            <span class="service-tile-num">01</span>
+            <span class="service-tile-name">Executive Assistance</span>
+            <p class="service-tile-desc">Calendar stays managed, inbox stays organized, client communication never falls behind. The day-to-day operational layer of your business, handled.</p>
+            <div class="tags">
+              <span class="tag">Calendar</span><span class="tag">Inbox</span>
+              <span class="tag">CRM</span><span class="tag">Follow-ups</span>
+            </div>
+          </div>
+        </div>
+        <div class="service-tile">
+          <img class="service-tile-img" src="Service3.jpg" alt="Operations Coordination">
+          <div class="service-tile-body">
+            <span class="service-tile-num">02</span>
+            <span class="service-tile-name">Operations Coordination</span>
+            <p class="service-tile-desc">Workflows structured, SOPs documented, recurring processes off your plate. The operational backbone that lets your business function, even when you're unavailable.</p>
+            <div class="tags">
+              <span class="tag">Workflows</span><span class="tag">SOPs</span>
+              <span class="tag">Task tracking</span><span class="tag">Project coord.</span>
+            </div>
+          </div>
+        </div>
+        <div class="service-tile">
+          <img class="service-tile-img" src="Service2.jpg" alt="Marketing Support">
+          <div class="service-tile-body">
+            <span class="service-tile-num">03</span>
+            <span class="service-tile-name">Marketing Support</span>
+            <p class="service-tile-desc">Content scheduled, assets organized, publishing consistent, without you managing every moving piece. Marketing coordination and social operations handled behind the scenes.</p>
+            <div class="tags">
+              <span class="tag">Scheduling</span><span class="tag">Facebook ads</span>
+              <span class="tag">Assets</span><span class="tag">Social ops</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══ VALUE ══ -->
+  <section style="padding:80px 0; background:#edeae4; border-top:1px solid #d4d0c9;">
+    <div class="container-lg">
+      <span class="spyre-label">Why it works</span>
+      <h2 class="section-heading" style="text-align:left; font-size:38px; margin-bottom:52px; max-width:600px;">What your business looks like<br>with the right support</h2>
+      <div class="value-list">
+        <div class="value-item">
+          <h3>Nothing falls through the cracks, even when your calendar is full</h3>
+          <p class="body-text">Every task has a clear owner, a due date, and a follow-through process. You stop being the safety net.</p>
+        </div>
+        <div class="value-item">
+          <h3>Your clients hear from you, even when you're heads-down</h3>
+          <p class="body-text">Proactive communication management keeps client relationships warm and response time consistent, without you touching every email.</p>
+        </div>
+        <div class="value-item">
+          <h3>Your to-do list gets done whether or not you're available</h3>
+          <p class="body-text">Recurring tasks don't pile up when life happens. The business keeps moving because someone is keeping it moving.</p>
+        </div>
+        <div class="value-item">
+          <h3>One support role, not three contractors to manage</h3>
+          <p class="body-text">Executive assistance, operations coordination, and marketing support within one streamlined engagement. Less overhead, more consistency.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══ PROCESS ══ -->
+  <section id="process" style="padding:80px 0; background:#edeae4; border-top:1px solid #d4d0c9;">
+    <div class="container-lg">
+      <span class="spyre-label">How it works</span>
+      <h2 class="section-heading" style="text-align:left; font-size:38px; margin-bottom:52px; max-width:560px;">A structured process designed<br>for growing businesses</h2>
+      <div class="process-list">
+        <div class="process-item">
+          <div class="process-num">1</div>
+          <div>
+            <h3>We understand your world</h3>
+            <p class="body-text">A focused discovery call to map your operations, recurring tasks, communication flow, and where your time is actually going. No assumptions.</p>
+          </div>
+        </div>
+        <div class="process-item">
+          <div class="process-num">2</div>
+          <div>
+            <h3>We organize it so it runs without you</h3>
+            <p class="body-text">Workflows get structured, responsibilities assigned, and recurring processes documented so nothing depends on someone remembering.</p>
+          </div>
+        </div>
+        <div class="process-item">
+          <div class="process-num">3</div>
+          <div>
+            <h3>Consistent support, every week</h3>
+            <p class="body-text">Day-to-day coordination, communication management, and operational support, not when you ask, but before you have to.</p>
+          </div>
+        </div>
+        <div class="process-item">
+          <div class="process-num">4</div>
+          <div>
+            <h3>Your operations grow with you</h3>
+            <p class="body-text">As your business scales, the support adapts. New workflows, new processes, handled without starting from scratch.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══ RECENT RESULTS ══ -->
+  <section id="results" style="padding:80px 0; background:#edeae4; border-top:1px solid #d4d0c9;">
+    <div class="container-lg">
+      <h2 class="section-heading" style="margin-bottom:40px;">Recent <span>Results</span>.</h2>
+      <div class="results-grid">
+        <div class="result-tile">
+          <img class="result-tile-img" src="workflow.png" alt="">
+          <span class="result-tile-label">Workflow Organization</span>
+        </div>
+        <div class="result-tile">
+          <img class="result-tile-img" src="marketing.png" alt="">
+          <span class="result-tile-label">Marketing Coordination</span>
+        </div>
+        <div class="result-tile">
+          <img class="result-tile-img" src="Communication.png" alt="">
+          <span class="result-tile-label">Communication Systems</span>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top:48px;">
+        <a href="#contact" class="cta-link">View all services</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══ TESTIMONIALS ══ -->
+  <section id="clients" style="padding:80px 0; background:#edeae4; border-top:1px solid #d4d0c9;">
+    <div class="container-lg">
+      <h2 class="section-heading" style="margin-bottom:48px;">What <span>Founders</span> Say.</h2>
+      <div class="testi-grid">
+        <div class="testi">
+          <blockquote>"I was skeptical about delegating executive tasks, I'd tried VAs before and spent more time managing them than the tasks themselves. Shella was different. She figured out what I needed before I had to explain it twice."</blockquote>
+          <cite>, Jamie M., Founder · Online coaching · United States</cite>
+        </div>
+        <div class="testi">
+          <blockquote>"Our content had always been inconsistent because no one owned the process end-to-end. Shella took it over completely, scheduling, coordination, asset management, and it's been running smoothly for months."</blockquote>
+          <cite>, Sophie P., Director · Digital agency · United Kingdom</cite>
+        </div>
+        <div class="testi">
+          <blockquote>"The thing that surprised me most wasn't the time I got back, it was how much calmer everything felt. Having someone reliable managing the operational layer made the whole business feel less fragile."</blockquote>
+          <cite>, Ryan K., Founder · Ecommerce brand · Australia</cite>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══ FAQ ══ -->
+  <section style="padding:80px 0; background:#edeae4; border-top:1px solid #d4d0c9;">
+    <div class="container-lg">
+      <span class="spyre-label">Frequently asked</span>
+      <h2 class="section-heading" style="text-align:left; font-size:38px; margin-bottom:52px;">The questions founders<br>actually ask</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-q">How do I know you won't drop the ball?</div>
+          <p class="body-text">Every task, follow-up, and deadline is tracked in a shared system. Nothing depends on memory. You'll always know what's in progress, and so will I.</p>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">What does onboarding actually look like?</div>
+          <p class="body-text">We start with a focused discovery session to map your workflows and communication systems. I build the structure before stepping into active support, usually within the first week.</p>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">What if it's not working after the first month?</div>
+          <p class="body-text">Every engagement includes a structured monthly review. We assess what's working, what needs adjusting, and whether the scope still fits. No guessing, we course-correct proactively.</p>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">How quickly can you start?</div>
+          <p class="body-text">Typically within one to two weeks after our discovery call. Discovery calls are free and commitment-free, purely to assess whether this is the right fit.</p>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Do you work with businesses outside the Philippines?</div>
+          <p class="body-text">Yes. All engagements are fully remote, worldwide. Current clients are based in the United States, United Kingdom, and Australia. Time zone overlap arranged on the discovery call.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══ DARK CTA ══ -->
+  <div class="cta-section" id="contact">
+    <span class="spyre-label">Ready to start</span>
+    <h2>Reliable operational support for founders who need consistency behind the scenes</h2>
+    <p class="cta-sub">Discovery calls are free and commitment-free. We'll talk through your business, your biggest operational gaps, and whether this is the right fit.</p>
+    <a href="mailto:hello@shellasimbillo.com" class="btn-cta">Book a discovery call</a>
+    <p class="cta-note">No pitch. No pressure. Just a focused conversation about your business.</p>
+    <p class="cta-pricing">Monthly retainer · Minimum 3-month commitment · Remote, worldwide</p>
+  </div>
+
+
+  <!-- ══ FOOTER ══ -->
+  <footer>
+    <div class="footer-social">
+      <a href="#">LinkedIn</a>
+      <a href="#">Instagram</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+      <a href="mailto:hello@shellasimbillo.com">hello@shellasimbillo.com</a>
+    </div>
+    <div class="footer-legal">
+      <p>© 2025 Shella Simbillo · Executive Assistant Philippines · All Rights Reserved.</p>
+      <a href="#services">Executive Assistant Services</a>
+      <a href="#services">Operations Support</a>
+      <a href="#services">Marketing Coordination</a>
+    </div>
+  </footer>
+
+
+  <script>
+    // Preloader
+    document.addEventListener('DOMContentLoaded', () => {
+      const preloader = document.getElementById('preloader');
+      const dark = preloader.querySelector('.dark');
+      setTimeout(() => {
+        dark.style.width = '0';
+        setTimeout(() => {
+          preloader.classList.add('fade-out');
+          setTimeout(() => {
+            preloader.style.display = 'none';
+            document.body.classList.remove('loading');
+          }, 500);
+        }, 4000);
+      }, 500);
+    });
+
+    // Header shadow on scroll
+    const header = document.getElementById('site-header');
+    window.addEventListener('scroll', () => {
+      header.style.boxShadow = window.scrollY > 10
+        ? '0 1px 12px rgba(0,0,0,0.07)' : 'none';
+    });
+  </script>
+
+</body>
+</html>
