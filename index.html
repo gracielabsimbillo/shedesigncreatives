@@ -316,76 +316,43 @@
 
     /* ══ MOBILE ══ */
     @media (max-width: 768px) {
-      /* Header */
       header { padding: 16px 20px; justify-content: center; }
       header nav { display: none; }
-      .logo-wrap { position: static; transform: none; text-align: center; }
-
-      /* Hero */
+      .logo-wrap { position: static; transform: none; }
       .hero { min-height: 420px; }
       .hero-text { bottom: 12%; padding: 0 24px; }
       .hero-text h1 { font-size: 34px; }
       .hero-eyebrow { font-size: 8px; letter-spacing: 0.18em; }
-
-      /* Containers */
       .container-lg { padding: 0 20px; }
       .container-sm { padding: 0 20px; }
-
-      /* Section padding */
-      .section-pad { padding: 52px 0; }
-
-      /* Full-width image */
       .full-img img { height: 260px; }
-
-      /* Contained image */
-      .contained-img { max-width: 100%; padding: 0 20px; }
-
-      /* Big heading */
+      .contained-img { max-width: 100%; }
       .big-heading { font-size: 30px; }
-
-      /* Section heading */
       .section-heading { font-size: 28px; }
-
-      /* Two-col → single col */
       .two-col { grid-template-columns: 1fr; gap: 28px; }
       .two-col .text-col { justify-content: flex-start; }
       .two-col .text-col p { max-width: 100%; }
-
-      /* Services → single col */
       .services-grid { grid-template-columns: 1fr; gap: 40px; }
-
-      /* Value items → single col */
       .value-item { grid-template-columns: 1fr; gap: 12px; padding: 28px 0; }
-
-      /* Process */
       .process-item { gap: 20px; padding: 28px 0; }
       .process-num { font-size: 28px; }
-
-      /* Results → single col */
       .results-grid { grid-template-columns: 1fr; gap: 28px; }
-
-      /* FAQ → single col */
       .faq-item { grid-template-columns: 1fr; gap: 14px; padding: 28px 0; }
       .faq-q { font-size: 16px; }
-
-      /* Testimonial header */
-      #clients .section-heading { font-size: 26px; }
-      #clients > div > div:first-child { flex-direction: column; gap: 16px; }
-      #clients > div > div:first-child p { text-align: left; max-width: 100%; }
-
-      /* Testimonial arrows — move inside the image */
-      #testi-prev { left: 4px !important; }
-      #testi-next { right: 4px !important; }
-
-      /* CTA */
       .cta-section { padding: 60px 24px 48px; }
       .cta-section h2 { font-size: 28px; }
       .cta-section .cta-sub { font-size: 12px; }
-
-      /* Footer */
       footer { padding: 24px 20px 20px; }
       .footer-social { flex-wrap: wrap; gap: 16px; }
       .footer-legal { flex-direction: column; align-items: flex-start; gap: 8px; }
+      /* Testimonials — swipeable on mobile, no JS changes */
+      #testi-wrap { width: 100% !important; overflow-x: scroll !important; scroll-snap-type: x mandatory !important; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+      #testi-wrap::-webkit-scrollbar { display: none; }
+      #testi-track > div { scroll-snap-align: start; }
+      #testi-prev, #testi-next { display: none !important; }
+      #clients .section-heading { font-size: 26px; }
+      #clients > div > div:first-child { flex-direction: column; gap: 16px; }
+      #clients > div > div:first-child p { text-align: left; max-width: 100%; }
     }
   </style>
 </head>
@@ -678,50 +645,50 @@
         </button>
 
         <!-- Track -->
-        <div id="testi-wrap" style="overflow:hidden; width:100%; max-width:480px; margin:0 auto; transition:height 0.6s cubic-bezier(0.76,0,0.24,1);">
+        <div id="testi-wrap" style="overflow:hidden; width:480px; margin:0 auto; transition:height 0.6s cubic-bezier(0.76,0,0.24,1);">
           <div id="testi-track" style="display:flex; align-items:flex-start; transition:transform 0.6s cubic-bezier(0.76,0,0.24,1);">
-            <div style="min-width:100%; flex-shrink:0; position:relative;">
-              <img src="testimonial.png" alt="Testimonial" style="width:100%; height:auto; display:block;">
+            <div style="min-width:480px; flex-shrink:0; position:relative;">
+              <img src="testimonial.png" alt="Testimonial" style="width:480px; height:auto; display:block;">
               <div style="position:absolute; top:0; left:0; width:100%; height:60px; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);"></div>
             </div>
-            <div style="min-width:100%; flex-shrink:0; position:relative;">
-              <img src="testimonial1.png" alt="Testimonial" style="width:100%; height:auto; display:block;">
+            <div style="min-width:480px; flex-shrink:0; position:relative;">
+              <img src="testimonial1.png" alt="Testimonial" style="width:480px; height:auto; display:block;">
               <div style="position:absolute; top:0; left:0; width:100%; height:60px; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);"></div>
             </div>
-            <div style="min-width:100%; flex-shrink:0; position:relative;">
-              <img src="testimonial2.png" alt="Testimonial" style="width:100%; height:auto; display:block;">
+            <div style="min-width:480px; flex-shrink:0; position:relative;">
+              <img src="testimonial2.png" alt="Testimonial" style="width:480px; height:auto; display:block;">
               <div style="position:absolute; top:0; left:0; width:100%; height:60px; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);"></div>
             </div>
-            <div style="min-width:100%; flex-shrink:0; position:relative;">
-              <img src="testimonial3.png" alt="Testimonial" style="width:100%; height:auto; display:block;">
+            <div style="min-width:480px; flex-shrink:0; position:relative;">
+              <img src="testimonial3.png" alt="Testimonial" style="width:480px; height:auto; display:block;">
               <div style="position:absolute; top:0; left:0; width:100%; height:60px; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);"></div>
             </div>
-            <div style="min-width:100%; flex-shrink:0; position:relative;">
-              <img src="testimonial4.png" alt="Testimonial" style="width:100%; height:auto; display:block;">
+            <div style="min-width:480px; flex-shrink:0; position:relative;">
+              <img src="testimonial4.png" alt="Testimonial" style="width:480px; height:auto; display:block;">
               <div style="position:absolute; top:0; left:0; width:100%; height:60px; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);"></div>
             </div>
-            <div style="min-width:100%; flex-shrink:0; position:relative;">
-              <img src="testimonial5.png" alt="Testimonial" style="width:100%; height:auto; display:block;">
+            <div style="min-width:480px; flex-shrink:0; position:relative;">
+              <img src="testimonial5.png" alt="Testimonial" style="width:480px; height:auto; display:block;">
               <div style="position:absolute; top:0; left:0; width:100%; height:60px; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);"></div>
             </div>
-            <div style="min-width:100%; flex-shrink:0; position:relative;">
-              <img src="testimonial6.png" alt="Testimonial" style="width:100%; height:auto; display:block;">
+            <div style="min-width:480px; flex-shrink:0; position:relative;">
+              <img src="testimonial6.png" alt="Testimonial" style="width:480px; height:auto; display:block;">
               <div style="position:absolute; top:0; left:0; width:100%; height:60px; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);"></div>
             </div>
-            <div style="min-width:100%; flex-shrink:0; position:relative;">
-              <img src="testimonial7.png" alt="Testimonial" style="width:100%; height:auto; display:block;">
+            <div style="min-width:480px; flex-shrink:0; position:relative;">
+              <img src="testimonial7.png" alt="Testimonial" style="width:480px; height:auto; display:block;">
               <div style="position:absolute; top:0; left:0; width:100%; height:60px; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);"></div>
             </div>
-            <div style="min-width:100%; flex-shrink:0; position:relative;">
-              <img src="testimonial8.png" alt="Testimonial" style="width:100%; height:auto; display:block;">
+            <div style="min-width:480px; flex-shrink:0; position:relative;">
+              <img src="testimonial8.png" alt="Testimonial" style="width:480px; height:auto; display:block;">
               <div style="position:absolute; top:0; left:0; width:100%; height:60px; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);"></div>
             </div>
-            <div style="min-width:100%; flex-shrink:0; position:relative;">
-              <img src="testimonial9.png" alt="Testimonial" style="width:100%; height:auto; display:block;">
+            <div style="min-width:480px; flex-shrink:0; position:relative;">
+              <img src="testimonial9.png" alt="Testimonial" style="width:480px; height:auto; display:block;">
               <div style="position:absolute; top:0; left:0; width:100%; height:60px; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);"></div>
             </div>
-            <div style="min-width:100%; flex-shrink:0; position:relative;">
-              <img src="testimonial10.png" alt="Testimonial" style="width:100%; height:auto; display:block;">
+            <div style="min-width:480px; flex-shrink:0; position:relative;">
+              <img src="testimonial10.png" alt="Testimonial" style="width:480px; height:auto; display:block;">
               <div style="position:absolute; top:0; left:0; width:100%; height:60px; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);"></div>
             </div>
           </div>
@@ -839,9 +806,7 @@
       testiPage = Math.max(0, Math.min(testiTotal - 1, testiPage + dir));
       const track = document.getElementById('testi-track');
       const wrap  = document.getElementById('testi-wrap');
-      const slideW = document.getElementById('testi-wrap').offsetWidth;
-      track.style.transform = `translateX(-${testiPage * slideW}px)`;
-      // resize wrapper to match current slide's natural height
+      track.style.transform = `translateX(-${testiPage * 480}px)`;
       const currentImg = track.children[testiPage].querySelector('img');
       wrap.style.height = currentImg.offsetHeight + 'px';
       document.querySelectorAll('.t-dot').forEach((d, i) => {
@@ -851,7 +816,6 @@
       document.getElementById('testi-prev').style.opacity = testiPage === 0 ? '0.3' : '0.8';
       document.getElementById('testi-next').style.opacity = testiPage === testiTotal - 1 ? '0.3' : '0.8';
     }
-    // init height after images load
     window.addEventListener('load', () => testiSlide(0));
     testiSlide(0);
 
