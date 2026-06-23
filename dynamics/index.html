@@ -375,21 +375,21 @@
      Placed outside #hero so they survive scroll
 ══════════════════════════════════════════════ -->
 <!-- Letter A — detected boundary: SVG x 0–419 (gap at x=404 separates A from I) -->
-<svg class="ltr" id="ltr-a" viewBox="0 34.5 1431 264" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true">
+<svg class="ltr" id="ltr-a" viewBox="0 0 1431 345" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true">
   <defs><clipPath id="cp-a"><rect x="0" y="34.5" width="419" height="264"/></clipPath></defs>
   <g clip-path="url(#cp-a)">
     <image href="air-logo-transparent.svg" xlink:href="air-logo-transparent.svg" x="0" y="0" width="1431" height="345" preserveAspectRatio="xMinYMin meet"/>
   </g>
 </svg>
 <!-- Letter I — detected boundary: SVG x 419–830 (gap at x=845 separates I from R) -->
-<svg class="ltr" id="ltr-i" viewBox="0 34.5 1431 264" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true">
+<svg class="ltr" id="ltr-i" viewBox="0 0 1431 345" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true">
   <defs><clipPath id="cp-i"><rect x="419" y="34.5" width="411" height="264"/></clipPath></defs>
   <g clip-path="url(#cp-i)">
     <image href="air-logo-transparent.svg" xlink:href="air-logo-transparent.svg" x="0" y="0" width="1431" height="345" preserveAspectRatio="xMinYMin meet"/>
   </g>
 </svg>
 <!-- Letter R — detected boundary: SVG x 830–1431 -->
-<svg class="ltr" id="ltr-r" viewBox="0 34.5 1431 264" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true">
+<svg class="ltr" id="ltr-r" viewBox="0 0 1431 345" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true">
   <defs><clipPath id="cp-r"><rect x="830" y="34.5" width="601" height="264"/></clipPath></defs>
   <g clip-path="url(#cp-r)">
     <image href="air-logo-transparent.svg" xlink:href="air-logo-transparent.svg" x="0" y="0" width="1431" height="345" preserveAspectRatio="xMinYMin meet"/>
@@ -760,14 +760,15 @@
        A → 0–33.5%   I → 33.5–66.4%   R → 66.4–100%
   ───────────────────────────────────────────── */
   const NAT_W    = window.innerWidth;
-  const NAT_H    = NAT_W * (264 / 1431);
+  const NAT_H    = NAT_W * (345 / 1431);  // full SVG height (matches #pre-letters img)
   const NAT_TOP  = (window.innerHeight - NAT_H) / 2;   // vertically centred
   const NAT_LEFT = 0;
 
   /* Logo — shrinks to header size on scroll, centered */
   const LOGO_W    = Math.round(window.innerWidth * 0.14);
   const LOGO_LEFT = Math.round((window.innerWidth - LOGO_W) / 2);
-  const LOGO_TOP  = 13;
+  /* Offset by the SVG's top padding (y=34.5 of 345 units) so visual content hits ~13px from top */
+  const LOGO_TOP  = Math.round(13 - LOGO_W * 34.5 / 1431);
 
   /* ─────────────────────────────────────────────
      INITIAL STATE — letters at natural size, hidden.
@@ -798,7 +799,6 @@
 
     // 2. Logo slides in from left — no opacity change, just movement
     .to('#pre-letters', { x: 0, duration: 0.9, ease: 'power3.out' }, '-=0.15')
-    .set('#pre-letters', { clearProps: 'transform' }) // remove residual transform so position is steady
 
     // 3. Hold
     .to({}, { duration: 0.5 })
