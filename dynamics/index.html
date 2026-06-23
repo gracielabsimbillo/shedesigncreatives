@@ -366,9 +366,7 @@
       </svg>
     </button>
   </div>
-  <div class="hdr-title" style="overflow:hidden;height:36px;">
-    <img src="DYNAMIC%20LOGO.png" alt="Dynamic Events &amp; Tech Management" style="height:54px;width:auto;display:block;">
-  </div>
+  <div class="hdr-title" style="visibility:hidden;">DYNAMIC EVENTS<br>&amp; TECH MANAGEMENT</div>
   <a href="#cta" class="btn btn-dark hdr-cta">GET IN TOUCH <span class="plus">+</span></a>
 </header>
 
@@ -821,9 +819,7 @@
         const w = lerp(NAT_W,    LOGO_W,    p);
         const t = lerp(NAT_TOP,  LOGO_TOP,  p);
         const l = lerp(NAT_LEFT, LOGO_LEFT, p);
-        const ltrOpacity = p < 0.6 ? 1 : Math.max(0, 1 - (p - 0.6) * 2.5);
-
-        gsap.set('#ltr-a', { width: w, top: t, left: l, opacity: ltrOpacity });
+        gsap.set('#ltr-a', { width: w, top: t, left: l });
         gsap.set('.hero-desc, .hero-scroll', { opacity: Math.max(0, 1 - p * 2.5) });
       }
     });
