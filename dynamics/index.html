@@ -88,7 +88,7 @@
 
     /* ── HERO */
     #hero { height: 100svh; min-height: 600px; overflow: hidden; position: relative; background: #eef0f7; }
-    .hero-video { position: absolute; inset: 0; z-index: 1; overflow: hidden; opacity: 0; }
+    .hero-video { position: absolute; inset: 0; z-index: 1; overflow: hidden; }
     .hero-video video {
       position: absolute; inset: 0;
       width: 100%; height: 100%;
@@ -760,7 +760,6 @@
   gsap.set('#pre-letters', { x: -window.innerWidth }); // off-screen left, ready to slide in
   gsap.set('#hdr', { opacity: 0, y: -12 });
   gsap.set('.hero-desc, .hero-scroll', { opacity: 0 });
-  gsap.set('.hero-video', { opacity: 0 });
 
   /* ─────────────────────────────────────────────
      PRELOADER SEQUENCE
@@ -789,9 +788,6 @@
     // 4. Instant swap: hide preloader logo, reveal hero letters (same SVG, same size — seamless)
     .set('#pre-letters', { opacity: 0 })
     .set('#ltr-a', { opacity: 1 })
-
-    // 5. Video fades in
-    .to('.hero-video', { opacity: 1, duration: 0.8, ease: 'power1.inOut' })
 
     // 6. Header slides down, UI fades in
     .to('#hdr',        { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out' }, '-=0.3')
