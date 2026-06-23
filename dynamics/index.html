@@ -371,30 +371,10 @@
 </header>
 
 <!-- ══════════════════════════════════════════════
-     LETTER SVGs — position:fixed, GSAP-controlled
-     Placed outside #hero so they survive scroll
+     HERO LOGO — position:fixed, GSAP-controlled
+     Single img so it renders identically to the preloader logo
 ══════════════════════════════════════════════ -->
-<!-- Letter A — detected boundary: SVG x 0–419 (gap at x=404 separates A from I) -->
-<svg class="ltr" id="ltr-a" viewBox="0 0 1431 345" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true">
-  <defs><clipPath id="cp-a"><rect x="0" y="34.5" width="419" height="264"/></clipPath></defs>
-  <g clip-path="url(#cp-a)">
-    <image href="air-logo-transparent.svg" xlink:href="air-logo-transparent.svg" x="0" y="0" width="1431" height="345" preserveAspectRatio="xMinYMin meet"/>
-  </g>
-</svg>
-<!-- Letter I — detected boundary: SVG x 419–830 (gap at x=845 separates I from R) -->
-<svg class="ltr" id="ltr-i" viewBox="0 0 1431 345" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true">
-  <defs><clipPath id="cp-i"><rect x="419" y="34.5" width="411" height="264"/></clipPath></defs>
-  <g clip-path="url(#cp-i)">
-    <image href="air-logo-transparent.svg" xlink:href="air-logo-transparent.svg" x="0" y="0" width="1431" height="345" preserveAspectRatio="xMinYMin meet"/>
-  </g>
-</svg>
-<!-- Letter R — detected boundary: SVG x 830–1431 -->
-<svg class="ltr" id="ltr-r" viewBox="0 0 1431 345" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true">
-  <defs><clipPath id="cp-r"><rect x="830" y="34.5" width="601" height="264"/></clipPath></defs>
-  <g clip-path="url(#cp-r)">
-    <image href="air-logo-transparent.svg" xlink:href="air-logo-transparent.svg" x="0" y="0" width="1431" height="345" preserveAspectRatio="xMinYMin meet"/>
-  </g>
-</svg>
+<img id="ltr-a" class="ltr" src="air-logo-transparent.svg" alt="" aria-hidden="true">
 
 <!-- ══════════════════════════════════════════════
      §1 HERO
@@ -774,7 +754,7 @@
      INITIAL STATE — letters at natural size, hidden.
      Preloader logo slides in from the left.
   ───────────────────────────────────────────── */
-  gsap.set(['#ltr-a','#ltr-i','#ltr-r'], {
+  gsap.set('#ltr-a', {
     left: NAT_LEFT, width: NAT_W, top: NAT_TOP, opacity: 0
   });
   gsap.set('#pre-letters', { x: -window.innerWidth }); // off-screen left, ready to slide in
@@ -808,7 +788,7 @@
 
     // 4. Instant swap: hide preloader logo, reveal hero letters (same SVG, same size — seamless)
     .set('#pre-letters', { opacity: 0 })
-    .set(['#ltr-a','#ltr-i','#ltr-r'], { opacity: 1 })
+    .set('#ltr-a', { opacity: 1 })
 
     // 5. Video fades in
     .to('.hero-video', { opacity: 1, duration: 0.8, ease: 'power1.inOut' })
@@ -840,7 +820,7 @@
         const t = lerp(NAT_TOP,  LOGO_TOP,  p);
         const l = lerp(NAT_LEFT, LOGO_LEFT, p);
 
-        gsap.set(['#ltr-a','#ltr-i','#ltr-r'], { width: w, top: t, left: l });
+        gsap.set('#ltr-a', { width: w, top: t, left: l });
         gsap.set('.hero-desc, .hero-scroll', { opacity: Math.max(0, 1 - p * 2.5) });
       }
     });
