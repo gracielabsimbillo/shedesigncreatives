@@ -384,6 +384,7 @@
   <!-- Background video — construction site (Mixkit free, no copyright) -->
   <div class="hero-video">
     <video autoplay muted loop playsinline>
+      <source src="5.mp4" type="video/mp4">
       <source src="https://drive.usercontent.google.com/download?id=1BEg3qHiDdxZZO2zLwuGkPQhKkY-BEJJW&export=download" type="video/mp4">
     </video>
   </div>
@@ -465,6 +466,7 @@
 
   <div class="impulse-strip">
     <video autoplay muted loop playsinline>
+      <source src="5.mp4" type="video/mp4">
       <source src="https://drive.usercontent.google.com/download?id=1BEg3qHiDdxZZO2zLwuGkPQhKkY-BEJJW&export=download" type="video/mp4">
     </video>
     <div class="impulse-strip-fade"></div>
@@ -754,6 +756,8 @@
      INITIAL STATE — letters at natural size, hidden.
      Preloader logo slides in from the left.
   ───────────────────────────────────────────── */
+  document.querySelectorAll('video').forEach(v => v.load());
+
   gsap.set('#ltr-a', {
     left: NAT_LEFT, width: NAT_W, top: NAT_TOP, opacity: 0
   });
