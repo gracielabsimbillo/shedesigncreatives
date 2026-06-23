@@ -798,6 +798,7 @@
 
     // 2. Logo slides in from left — no opacity change, just movement
     .to('#pre-letters', { x: 0, duration: 0.9, ease: 'power3.out' }, '-=0.15')
+    .set('#pre-letters', { clearProps: 'transform' }) // remove residual transform so position is steady
 
     // 3. Hold
     .to({}, { duration: 0.5 })
