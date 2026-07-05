@@ -224,23 +224,6 @@
       border: 1px solid #d4d0c9; padding: 4px 9px;
     }
 
-    /* ══ OUTCOME CHECKLIST ══ */
-    .outcome-list { list-style: none; max-width: 520px; margin: 0 auto; }
-    .outcome-list li {
-      display: flex; align-items: flex-start; gap: 14px;
-      font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 400;
-      color: #2a2a2a; line-height: 1.6;
-      padding: 16px 0; border-bottom: 1px solid #d4d0c9; text-align: left;
-    }
-    .outcome-list li:first-child { padding-top: 0; }
-    .outcome-list li:last-child { border-bottom: none; }
-    .outcome-check {
-      flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%;
-      border: 1px solid #8a8680; color: #8a8680;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 11px; margin-top: 2px;
-    }
-
     /* ══ VALUE — horizontal list ══ */
     .value-list { border-top: 1px solid #d4d0c9; }
     .value-item {
@@ -295,13 +278,19 @@
 
     /* ══ FAQ ══ */
     .faq-list { border-top: 1px solid #d4d0c9; }
-    .faq-item {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 80px; padding: 36px 0; border-bottom: 1px solid #d4d0c9;
-    }
+    .faq-item { border-bottom: 1px solid #d4d0c9; }
     .faq-q {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; gap: 32px; padding: 32px 0;
+      background: none; border: none; cursor: pointer; text-align: left;
       font-family: 'Playfair Display', serif; font-size: 18px; line-height: 1.4;
+      color: #1e1e1e;
     }
+    .faq-icon { flex-shrink: 0; display: flex; transition: transform 0.3s ease; }
+    .faq-item.open .faq-icon { transform: rotate(180deg); }
+    .faq-a-wrap { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+    .faq-item.open .faq-a-wrap { max-height: 300px; }
+    .faq-a-wrap .body-text { max-width: 640px; padding-bottom: 32px; }
 
     /* ══ ABOUT ══ */
     .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
@@ -372,8 +361,7 @@
       .process-item { gap: 20px; padding: 28px 0; }
       .process-num { font-size: 28px; }
       .results-grid { grid-template-columns: 1fr; gap: 28px; }
-      .faq-item { grid-template-columns: 1fr; gap: 14px; padding: 28px 0; }
-      .faq-q { font-size: 16px; }
+      .faq-q { font-size: 16px; padding: 24px 0; gap: 20px; }
       .cta-section { padding: 60px 24px 48px; }
       .cta-section h2 { font-size: 28px; }
       .cta-section .cta-sub { font-size: 14px; }
@@ -593,22 +581,6 @@
   </section>
 
 
-  <!-- ══ THE OUTCOME ══ -->
-  <section style="padding:80px 0; background:#f5f3ef; border-top:1px solid #d4d0c9;">
-    <div class="container-sm">
-      <h2 class="section-heading" style="margin-bottom:48px;">Imagine your business<br><span>90 days</span> from now.</h2>
-      <ul class="outcome-list">
-        <li><span class="outcome-check">&#10003;</span>Every lead gets followed up.</li>
-        <li><span class="outcome-check">&#10003;</span>Every client is onboarded consistently.</li>
-        <li><span class="outcome-check">&#10003;</span>Your calendar stays organized.</li>
-        <li><span class="outcome-check">&#10003;</span>Your CRM stays updated.</li>
-        <li><span class="outcome-check">&#10003;</span>Your team knows what needs to happen.</li>
-        <li><span class="outcome-check">&#10003;</span>Your business keeps moving&mdash;even when you're offline.</li>
-      </ul>
-    </div>
-  </section>
-
-
   <!-- ══ VALUE ══ -->
   <section style="padding:80px 0; background:#edeae4; border-top:1px solid #d4d0c9;">
     <div class="container-lg">
@@ -795,24 +767,49 @@
       <h2 class="section-heading" style="text-align:left; font-size:38px; margin-bottom:52px;">The questions founders<br>actually ask</h2>
       <div class="faq-list">
         <div class="faq-item">
-          <div class="faq-q">How do I know you won't drop the ball?</div>
-          <p class="body-text">Every task, follow-up, and deadline is tracked in a shared system. Nothing depends on memory. You'll always know what's in progress, and so will I.</p>
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span>How do I know you won't drop the ball?</span>
+            <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#8a8680" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5L7 10L12 5"/></svg></span>
+          </button>
+          <div class="faq-a-wrap">
+            <p class="body-text">Every task, follow-up, and deadline is tracked in a shared system. Nothing depends on memory. You'll always know what's in progress, and so will I.</p>
+          </div>
         </div>
         <div class="faq-item">
-          <div class="faq-q">What does onboarding actually look like?</div>
-          <p class="body-text">We start with a focused discovery session to map your workflows and communication systems. I build the structure before stepping into active support, usually within the first week.</p>
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span>What does onboarding actually look like?</span>
+            <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#8a8680" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5L7 10L12 5"/></svg></span>
+          </button>
+          <div class="faq-a-wrap">
+            <p class="body-text">We start with a focused discovery session to map your workflows and communication systems. I build the structure before stepping into active support, usually within the first week.</p>
+          </div>
         </div>
         <div class="faq-item">
-          <div class="faq-q">What if it's not working after the first month?</div>
-          <p class="body-text">Every engagement includes a structured monthly review. We assess what's working, what needs adjusting, and whether the scope still fits. No guessing, we course-correct proactively.</p>
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span>What if it's not working after the first month?</span>
+            <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#8a8680" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5L7 10L12 5"/></svg></span>
+          </button>
+          <div class="faq-a-wrap">
+            <p class="body-text">Every engagement includes a structured monthly review. We assess what's working, what needs adjusting, and whether the scope still fits. No guessing, we course-correct proactively.</p>
+          </div>
         </div>
         <div class="faq-item">
-          <div class="faq-q">How quickly can you start?</div>
-          <p class="body-text">Typically within one to two weeks after our discovery call. Discovery calls are free and commitment-free, purely to assess whether this is the right fit.</p>
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span>How quickly can you start?</span>
+            <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#8a8680" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5L7 10L12 5"/></svg></span>
+          </button>
+          <div class="faq-a-wrap">
+            <p class="body-text">Typically within one to two weeks after our discovery call. Discovery calls are free and commitment-free, purely to assess whether this is the right fit.</p>
+          </div>
         </div>
         <div class="faq-item">
-          <div class="faq-q">Do you work with businesses outside the Philippines?</div>
-          <p class="body-text">Yes. All engagements are fully remote, worldwide. Current clients are based in the United States, United Kingdom, and Australia. Time zone overlap arranged on the discovery call.</p>
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span>Do you work with businesses outside the Philippines?</span>
+            <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#8a8680" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5L7 10L12 5"/></svg></span>
+          </button>
+          <div class="faq-a-wrap">
+            <p class="body-text">Yes. All engagements are fully remote, worldwide. Current clients are based in the United States, United Kingdom, and Australia. Time zone overlap arranged on the discovery call.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -864,6 +861,11 @@
         }, 4000);
       }, 500);
     });
+
+    // FAQ accordion — each item toggles independently
+    function toggleFaq(btn) {
+      btn.closest('.faq-item').classList.toggle('open');
+    }
 
     // Testimonial slider — 1 per slide, 10 total
     let testiPage = 0;
