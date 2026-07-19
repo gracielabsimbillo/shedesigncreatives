@@ -212,8 +212,8 @@
     }
 
     /* ══ SERVICES GRID (like project tiles) ══ */
-    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px 24px; }
-    .service-tile { position: relative; overflow: hidden; }
+    .services-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px 24px; }
+    .service-tile { position: relative; overflow: hidden; flex: 1 1 calc(33.333% - 16px); max-width: calc(33.333% - 16px); }
     .service-tile-img {
       width: 100%; aspect-ratio: 1/1;
       object-fit: cover; display: block;
@@ -378,7 +378,8 @@
       .two-col { grid-template-columns: 1fr; gap: 28px; }
       .two-col .text-col { justify-content: flex-start; }
       .two-col .text-col p { max-width: 100%; }
-      .services-grid { grid-template-columns: 1fr; gap: 40px; }
+      .services-grid { gap: 40px; }
+      .service-tile { flex-basis: 100%; max-width: 100%; }
       .step { padding: 20px 22px; max-width: 100%; }
       .results-grid { grid-template-columns: 1fr; gap: 28px; }
       .faq-q { font-size: 16px; padding: 24px 0; gap: 20px; }
